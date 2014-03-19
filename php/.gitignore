@@ -1,2 +1,5 @@
 /.idea
 /nbproject
+/composer.phar
+/vendor
+/src/db.dat
