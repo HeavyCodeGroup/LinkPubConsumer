@@ -85,6 +85,7 @@ abstract class AbstractLinkPubConsumer
 
     /**
      * @return string
+     * @ConsumerGUID
      */
     public function getConsumerGUID()
     {
@@ -120,6 +121,7 @@ abstract class AbstractLinkPubConsumer
 
     /**
      * @return array
+     * @AvailableDispenserHosts
      */
     abstract protected function getAvailableDispenserHosts();
 
@@ -141,6 +143,7 @@ abstract class AbstractLinkPubConsumer
 
     /**
      * @return string|null
+     * @InstanceGUID
      */
     abstract protected function getInstanceGUID();
 
