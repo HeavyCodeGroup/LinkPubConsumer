@@ -10,24 +10,14 @@ abstract class AbstractLinkPubConsumer
     const RETRIEVAL_CONCLUSION_FAIL = 1;
 
     /**
-     * @var array
-     */
-    protected $dispenserUrls = array('dispenser.linkpub.local');
-
-    /**
      * @var string
      */
-    private $consumerId = '91734bd4-dd94-498d-808a-d05235c853f9';
+    private $consumerGUID = '91734bd4-dd94-498d-808a-d05235c853f9';
 
     /**
      * @var string|null
      */
-    protected $instanceGUID = null;
-
-    /**
-     * @var string|null
-     */
-    protected $siteGUID = null;
+    private $siteGUID = null;
 
     /**
      * @var array
@@ -96,9 +86,9 @@ abstract class AbstractLinkPubConsumer
     /**
      * @return string
      */
-    public function getConsumerId()
+    public function getConsumerGUID()
     {
-        return $this->consumerId;
+        return $this->consumerGUID;
     }
 
     /**
@@ -113,12 +103,46 @@ abstract class AbstractLinkPubConsumer
     }
 
     /**
+     * @return null|string
+     */
+    public function getSiteGUID()
+    {
+        return $this->siteGUID;
+    }
+
+    /**
      * @return string
      */
     protected function getPageUrl()
     {
         return $_SERVER['REQUEST_URI'];
     }
+
+    /**
+     * @return array
+     */
+    abstract protected function getAvailableDispenserHosts();
+
+    /**
+     * @return string
+     */
+    protected function getDispenserHost()
+    {
+        static $dispenserHosts = null;
+        if ($dispenserHosts === null) {
+            $dispenserHosts = $this->getAvailableDispenserHosts();
+        }
+
+        $dispenserHost = array_shift($dispenserHosts);
+        array_push($dispenserHosts, $dispenserHost);
+
+        return $dispenserHost;
+    }
+
+    /**
+     * @return string|null
+     */
+    abstract protected function getInstanceGUID();
 
     /**
      * @param string $host
@@ -417,12 +441,12 @@ abstract class AbstractLinkPubConsumer
     protected function fetchLinkData()
     {
         $get = '/?';
-        if ($this->instanceGUID) {
-            $get .= 'guid=' . $this->instanceGUID;
-        } elseif ($this->siteGUID) {
-            $get .= 'site_guid=' . $this->siteGUID . '&consumer_guid=' . $this->getConsumerId();
+        if ($this->getInstanceGUID()) {
+            $get .= 'guid=' . $this->getInstanceGUID();
+        } elseif ($this->getSiteGUID()) {
+            $get .= 'site_guid=' . $this->getSiteGUID() . '&consumer_guid=' . $this->getConsumerGUID();
         }
-        $linkData = $this->fetch($this->dispenserUrls[0], $get);
+        $linkData = $this->fetch($this->getDispenserHost(), $get);
         return $linkData;
     }
 
