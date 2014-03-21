@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class AbstractLinkPubConsumer
+ * @LinkPubConsumer\Component
+ * @LinkPubConsumer\Basis
+ */
 abstract class AbstractLinkPubConsumer
 {
     const FETCH_METHOD_FILE_GET_CONTENTS = 'file_get_contents';
@@ -85,7 +90,7 @@ abstract class AbstractLinkPubConsumer
 
     /**
      * @return string
-     * @ConsumerGUID
+     * @LinkPubConsumer\ConsumerGUID
      */
     public function getConsumerGUID()
     {
@@ -121,7 +126,7 @@ abstract class AbstractLinkPubConsumer
 
     /**
      * @return array
-     * @AvailableDispenserHosts
+     * @LinkPubConsumer\AvailableDispenserHosts
      */
     abstract protected function getAvailableDispenserHosts();
 
@@ -143,7 +148,7 @@ abstract class AbstractLinkPubConsumer
 
     /**
      * @return string|null
-     * @InstanceGUID
+     * @LinkPubConsumer\InstanceGUID
      */
     abstract protected function getInstanceGUID();
 

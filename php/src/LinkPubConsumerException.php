@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class LinkPubConsumerException
+ * @LinkPubConsumer\Component
+ */
 class LinkPubConsumerException extends \Exception
 {
     protected $data;

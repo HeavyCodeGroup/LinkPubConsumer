@@ -1,5 +1,9 @@
 {
     "autoload" : {
-        "psr-0" : { "" : "src/" }
+        "psr-0" : { "" : "src/" },
+        "psr-4" : { "HeavyCodeGroup\\LinkPub\\Consumer\\" : "lib/"}
+    },
+    "require": {
+        "doctrine/annotations": "v1.1.2"
     }
 }
