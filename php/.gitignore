@@ -5,3 +5,4 @@
 /src/db.dat
 /Makefile
 /*.tar.bz2
+/consumer.yml

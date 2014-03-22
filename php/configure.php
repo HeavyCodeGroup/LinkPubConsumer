@@ -2,9 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use HeavyCodeGroup\LinkPub\Consumer\Declaration\Annotation\ConsumerGUID;
 use HeavyCodeGroup\LinkPub\Consumer\Distribution;
 
 // Register annotations autoloading
@@ -44,6 +42,10 @@ if (!preg_match('/^[a-f0-9]{8}\-[a-f0-9]{4}\-[a-f0-9]{4}\-[a-f0-9]{4}\-[a-f0-9]{
     );
 }
 echo "Consumer GUID: $guid\n";
+
+if ($dist->writeYaml(__DIR__ . '/consumer.yml')) {
+    echo "Written YAML.\n";
+}
 
 if ($dist->writeMakefile(__DIR__ . '/Makefile')) {
     echo "Written Makefile.\n";

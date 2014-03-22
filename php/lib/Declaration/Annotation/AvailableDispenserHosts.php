@@ -11,6 +11,10 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-class AvailableDispenserHosts extends Annotation
+class AvailableDispenserHosts extends Annotation implements MethodOverrideInterface
 {
+    public function getOverrideContext()
+    {
+        return 'available_dispenser_hosts';
+    }
 }

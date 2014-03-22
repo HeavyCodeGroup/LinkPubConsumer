@@ -11,6 +11,6 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-class ConsumerGUID extends Annotation
+class ConsumerGUID extends Annotation implements ConsumerIdentificationInterface
 {
 }

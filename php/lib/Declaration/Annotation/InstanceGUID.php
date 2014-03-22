@@ -11,6 +11,10 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-class InstanceGUID extends Annotation
+class InstanceGUID extends Annotation implements MethodOverrideInterface
 {
+    public function getOverrideContext()
+    {
+        return 'instance_guid';
+    }
 }

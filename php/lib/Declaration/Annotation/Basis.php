@@ -11,6 +11,6 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("CLASS")
  */
-class Basis extends Annotation
+class Basis extends Annotation implements ConsumerBasisInterface
 {
 }
